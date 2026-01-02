@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="TraveLLaMA: A Multimodal Travel Assistant with Large-Scale Dataset and Structured Reasoning - AAAI 2026">
+  <meta name="keywords" content="TraveLLaMA, Travel AI, Multimodal, Vision-Language Model, Travel Planning, LLM, Chain-of-Thought, TravelQA">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Meng Chu, Yukang Chen, Haokun Gui, Shaozuo Yu, Yi Wang, Jiaya Jia">
+
+  <title>TraveLLaMA: A Multimodal Travel Assistant with Large-Scale Dataset and Structured Reasoning</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦙</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+
+<body>
+
+<!-- ================= HERO / TITLE ================= -->
+<section class="hero-travel">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-10 has-text-centered">
+
+        <!-- Conference Badge -->
+        <div class="venue-badge animate-in">
+          AAAI 2026
+        </div>
+
+        <!-- Title -->
+        <h1 class="publication-title animate-in delay-1">
+          TraveLLaMA: A Multimodal Travel Assistant with<br>
+          Large-Scale Dataset and Structured Reasoning
+        </h1>
+
+        <!-- Authors -->
+        <div class="publication-authors animate-in delay-2">
+          <span class="author-block"><a href="#">Meng Chu</a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#">Yukang Chen</a><sup>2</sup>,</span>
+          <span class="author-block"><a href="#">Haokun Gui</a><sup>1</sup>,</span>
+          <span class="author-block"><a href="#">Shaozuo Yu</a><sup>2</sup>,</span>
+          <span class="author-block"><a href="#">Yi Wang</a><sup>3</sup>,</span>
+          <span class="author-block"><a href="#">Jiaya Jia</a><sup>1</sup></span>
+        </div>
+
+        <!-- Affiliations -->
+        <div class="affiliations animate-in delay-2">
+          <sup>1</sup>Hong Kong University of Science and Technology &nbsp;&nbsp;
+          <sup>2</sup>Chinese University of Hong Kong &nbsp;&nbsp;
+          <sup>3</sup>Shanghai AI Laboratory
+        </div>
+
+        <!-- Links -->
+        <div class="publication-links animate-in delay-3">
+          <a href="#" class="btn-travel primary">
+            <i class="ai ai-arxiv"></i>
+            <span>Paper</span>
+          </a>
+          <a href="#" class="btn-travel secondary disabled">
+            <i class="fab fa-github"></i>
+            <span>Code (Coming Soon)</span>
+          </a>
+          <a href="#" class="btn-travel accent disabled">
+            <i class="fas fa-database"></i>
+            <span>TravelQA Dataset (Coming Soon)</span>
+          </a>
+          <a href="#" class="btn-travel secondary disabled">
+            <i class="fas fa-play-circle"></i>
+            <span>Demo (Coming Soon)</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEASER ================= -->
+<section class="section" style="padding-top: 0; padding-bottom: 2rem;">
+  <div class="teaser-container">
+    <div class="teaser-image animate-in delay-4">
+      <img src="./static/images/teaser.png" alt="TraveLLaMA Overview">
+    </div>
+    <p class="teaser-caption">
+      <strong>TraveLLaMA</strong> is an advanced multimodal AI travel assistant that seamlessly processes both text and image-based queries. 
+      The system enables travelers to plan trips efficiently by providing contextual responses including service information, 
+      localization details, and personalized recommendations based on visual inputs and textual questions.
+    </p>
+  </div>
+</section>
+
+<!-- ================= ABSTRACT ================= -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Abstract</h2>
+    <div class="abstract-box">
+      <p>
+        Tourism and travel planning increasingly rely on digital assistance, yet existing multimodal AI systems often lack specialized knowledge and contextual understanding of urban environments. We present <strong>TraveLLaMA</strong>, a specialized multimodal language model designed for comprehensive travel assistance. Our work addresses the fundamental challenge of developing practical AI travel assistants through three key contributions:
+      </p>
+      <p style="margin-top: 1rem;">
+        <strong>(1) TravelQA</strong>, a novel dataset of 265k question-answer pairs combining 160k text QA from authentic travel sources, 100k vision-language QA featuring maps and location imagery, and 5k expert-annotated Chain-of-Thought reasoning examples;
+        <strong>(2) Travel-CoT</strong>, a structured reasoning framework that decomposes travel queries into spatial, temporal, and practical dimensions, improving answer accuracy by 10.8% while providing interpretable decision paths; and
+        <strong>(3)</strong> an interactive agent system validated through extensive user studies.
+      </p>
+      <p style="margin-top: 1rem;">
+        Through fine-tuning experiments on state-of-the-art vision-language models, we achieve 6.2-9.4% base improvements, further enhanced by Travel-CoT reasoning. User studies with 500 participants show TraveLLaMA achieves a System Usability Scale score of <strong>82.5</strong>, significantly outperforming general-purpose models.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KEY STATS ================= -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">TravelQA Dataset</h2>
+    <p class="section-subtitle">The first large-scale multimodal travel dataset spanning 35+ cities worldwide</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-number">265K</div>
+        <div class="stat-label">Total QA Pairs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📝</div>
+        <div class="stat-number">160K</div>
+        <div class="stat-label">Text-based QA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🖼️</div>
+        <div class="stat-number">100K</div>
+        <div class="stat-label">Vision-Language QA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🧠</div>
+        <div class="stat-number">5K</div>
+        <div class="stat-label">Expert CoT Annotations</div>
+      </div>
+    </div>
+
+    <!-- Dataset Figure -->
+    <div class="method-container">
+      <div class="method-figure">
+        <img src="./static/images/dataset.png" alt="TravelQA Dataset Overview">
+      </div>
+      <div class="method-caption">
+        <strong>TravelQA Dataset Coverage:</strong> Our dataset spans major cities across North America, Asia, and Europe, covering six structured categories: 
+        <strong>Attractions</strong> (70k), <strong>Dining</strong> (52k), <strong>Living</strong> (39k), <strong>Transportation</strong> (26k), 
+        <strong>Cultural</strong> (39k), and <strong>Practical</strong> (34k) information. Visual elements include 40k map-based and 60k street-view image QA pairs.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTRIBUTIONS ================= -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Key Contributions</h2>
+    <p class="section-subtitle">Three major innovations for advancing AI-powered travel assistance</p>
+
+    <div class="contribution-grid">
+      <div class="contribution-card">
+        <div class="contribution-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3 class="contribution-title">TravelQA Dataset</h3>
+        <p class="contribution-desc">
+          The first large-scale multimodal travel dataset with 265k QA pairs: 160k text-based pairs from travel forums, 
+          100k vision-language pairs with maps and photos, and 5k expert-annotated CoT reasoning examples across 35+ cities.
+        </p>
+      </div>
+
+      <div class="contribution-card">
+        <div class="contribution-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h3 class="contribution-title">Travel-CoT Reasoning</h3>
+        <p class="contribution-desc">
+          A structured reasoning framework that decomposes queries into spatial, temporal, and practical dimensions. 
+          Beyond 6.2-9.4% base improvements, Travel-CoT achieves an additional 10.8% accuracy gain with interpretable reasoning paths.
+        </p>
+      </div>
+
+      <div class="contribution-card">
+        <div class="contribution-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h3 class="contribution-title">Interactive Agent System</h3>
+        <p class="contribution-desc">
+          A ReAct-based agent that integrates real-time services for dynamic planning. Validated by 500 users with a 
+          SUS score of 82.5 (Excellent), demonstrating superior usability for complex travel planning tasks.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHOD: Travel-CoT ================= -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Travel-CoT: Structured Reasoning</h2>
+    <p class="section-subtitle">Decomposing travel queries into interpretable reasoning dimensions</p>
+
+    <!-- CoT Steps -->
+    <div class="cot-steps">
+      <div class="cot-step">
+        <span class="icon">📍</span>
+        <span>Spatial Reasoning</span>
+      </div>
+      <div class="cot-step">
+        <span class="icon">⏰</span>
+        <span>Temporal Scheduling</span>
+      </div>
+      <div class="cot-step">
+        <span class="icon">💡</span>
+        <span>Practical Constraints</span>
+      </div>
+    </div>
+
+    <div class="method-container">
+      <div class="method-figure">
+        <img src="./static/images/method.png" alt="Travel-CoT Method">
+      </div>
+      <div class="method-caption">
+        <strong>Travel-CoT Framework:</strong> Given multimodal input (x, Q), the model generates a reasoning chain r = {r<sub>s</sub>, r<sub>t</sub>, r<sub>p</sub>}, 
+        where r<sub>s</sub> encodes spatial understanding (locations, distances, routes), r<sub>t</sub> encodes temporal scheduling (operating hours, time allocation), 
+        and r<sub>p</sub> captures practical constraints (budget, accessibility, safety). The final answer is generated conditioned on both the input and the reasoning chain.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AGENT ARCHITECTURE ================= -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Agent Architecture</h2>
+    <p class="section-subtitle">Real-time planning with iterative reasoning and tool integration</p>
+
+    <div class="method-container">
+      <div class="method-figure">
+        <img src="./static/images/agent.png" alt="Agent Architecture">
+      </div>
+      <div class="method-caption">
+        <strong>ReAct-Style Agent Pipeline:</strong> The agent processes multimodal travel requests through four stages: 
+        (1) <em>Query Analysis</em> extracts constraints and interprets visual inputs; 
+        (2) <em>Reasoning</em> applies Travel-CoT to organize requirements; 
+        (3) <em>Tool Employment</em> calls APIs for real-time information; 
+        (4) <em>Result Integration</em> generates detailed itineraries with budget calculations and constraint verification.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Experimental Results</h2>
+    <p class="section-subtitle">Comprehensive evaluation on TravelQA benchmark</p>
+
+    <div class="results-table-container">
+      <table class="results-table">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>LLM Backbone</th>
+            <th>Pure Text</th>
+            <th>VQA</th>
+            <th>Full Score</th>
+            <th>Δ Improvement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BLIP-2</td>
+            <td>Vicuna-13B</td>
+            <td>60.3</td>
+            <td>51.6</td>
+            <td>56.9</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>InstructBLIP</td>
+            <td>Vicuna-13B</td>
+            <td>64.6</td>
+            <td>55.4</td>
+            <td>61.1</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Shikra</td>
+            <td>Vicuna-13B</td>
+            <td>71.6</td>
+            <td>60.8</td>
+            <td>67.5</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Qwen-VL</td>
+            <td>Qwen-7B</td>
+            <td>72.1</td>
+            <td>61.6</td>
+            <td>68.1</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>LLaVA-1.5</td>
+            <td>Vicuna-13B</td>
+            <td>74.3</td>
+            <td>63.3</td>
+            <td>70.0</td>
+            <td>—</td>
+          </tr>
+          <tr style="background: #f0f0f0;">
+            <td colspan="6" style="text-align: left; font-weight: 600; padding-left: 1.5rem;">Fine-tuned on TravelQA</td>
+          </tr>
+          <tr>
+            <td>Qwen-VL (ft)</td>
+            <td>Qwen-7B</td>
+            <td>78.7</td>
+            <td>67.7</td>
+            <td>74.5</td>
+            <td class="improvement">+9.4%</td>
+          </tr>
+          <tr>
+            <td>LLaVA-1.5 (ft)</td>
+            <td>Vicuna-13B</td>
+            <td>80.4</td>
+            <td>68.9</td>
+            <td>76.0</td>
+            <td class="improvement">+8.6%</td>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>TraveLLaMA (Ours)</strong></td>
+            <td>Vicuna-13B</td>
+            <td><strong>82.5</strong></td>
+            <td><strong>70.5</strong></td>
+            <td><strong>77.8</strong></td>
+            <td class="improvement"><strong>+10.8%</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= USER STUDY ================= -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">User Study Results</h2>
+    <p class="section-subtitle">System Usability Scale (SUS) evaluation with 500 participants</p>
+
+    <div class="user-study-grid">
+      <div class="sus-score-card">
+        <div class="sus-label">TraveLLaMA (Ours)</div>
+        <div class="sus-score">82.5</div>
+        <div class="sus-rating">⭐ Excellent</div>
+      </div>
+      <div class="sus-score-card baseline">
+        <div class="sus-label">Claude 3.5</div>
+        <div class="sus-score">76.3</div>
+        <div class="sus-rating">Good</div>
+      </div>
+    </div>
+
+    <div class="abstract-box" style="margin-top: 2rem;">
+      <p style="text-align: center;">
+        Our user study demonstrates that <strong>TraveLLaMA</strong> significantly outperforms general-purpose models in travel planning tasks. 
+        The 6.2-point SUS improvement is driven by domain-optimized design, reflected in strong <em>ease-of-use</em>, <em>learnability</em>, 
+        and <em>reduced-complexity</em> ratings. Users consistently found TraveLLaMA more intuitive and less cognitively demanding for travel planning.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUALITATIVE COMPARISON ================= -->
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Qualitative Comparison</h2>
+    <p class="section-subtitle">TraveLLaMA vs. Claude 3.5 on real-world travel queries</p>
+
+    <div class="comparison-container">
+      <div class="comparison-figure">
+        <img src="./static/images/comparison.png" alt="Qualitative Comparison">
+      </div>
+    </div>
+
+    <div class="abstract-box" style="margin-top: 2rem;">
+      <p>
+        <strong>Key Observations:</strong> TraveLLaMA consistently outperforms Claude 3.5 in accuracy and contextual understanding:
+      </p>
+      <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+        <li><strong>Map-based tasks:</strong> Precise location grounding and relevant nearby information</li>
+        <li><strong>Scene recognition:</strong> Accurate identification of landmarks with meaningful contextual descriptions</li>
+        <li><strong>Multimodal integration:</strong> Detailed, actionable establishment information</li>
+        <li><strong>Complex queries:</strong> Proactive travel guidance including nearby attractions and optimal visiting times</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BIBTEX ================= -->
+<section class="bibtex-section" id="bibtex">
+  <div class="bibtex-container">
+    <h2 class="bibtex-title">📚 Citation</h2>
+    <div class="bibtex-box">
+      <button class="copy-btn" onclick="copyBibtex()">
+        <i class="fas fa-copy"></i> Copy
+      </button>
+      <pre><code>@inproceedings{chu2026travellama,
+  title     = {TraveLLaMA: A Multimodal Travel Assistant with Large-Scale Dataset and Structured Reasoning},
+  author    = {Chu, Meng and Chen, Yukang and Gui, Haokun and Yu, Shaozuo and Wang, Yi and Jia, Jiaya},
+  booktitle = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year      = {2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer-travel">
+  <div class="container">
+    <p>
+      This website is licensed under a 
+      <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+    <p style="margin-top: 0.5rem;">
+      Website template adapted from <a href="https://nerfies.github.io/" target="_blank">Nerfies</a>.
+    </p>
+  </div>
+</footer>
+
+<script>
+function copyBibtex() {
+  const bibtex = document.querySelector('.bibtex-box code').innerText;
+  navigator.clipboard.writeText(bibtex).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+    }, 2000);
+  });
+}
+
+// Animate elements on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.stat-card, .contribution-card, .method-figure').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'all 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
+
